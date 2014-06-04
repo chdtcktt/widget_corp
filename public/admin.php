@@ -3,7 +3,7 @@ include '../includes/top.php';
 ?>
 
 <?php 
- echo 'hey';
+
 ?>
 
 <?php 
