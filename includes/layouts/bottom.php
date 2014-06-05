@@ -6,3 +6,7 @@
 <script src="../public/js/bootstrap.min.js" type="text/javascript"></script>
 </body>
 </html>
+
+    <?php 
+
+    mysqli_close($con);

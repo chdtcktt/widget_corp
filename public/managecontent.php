@@ -2,34 +2,53 @@
 $title = 'Manage Content';
 require_once '../includes/dbconnection.php';
 require_once '../includes/functions.php';
-
-//perform db query
-$query = "select * from subjects where visible = 1 order by position ASC";
-$result = mysqli_query($con, $query);
-if (!$result) {
-    die("db query failed!");
-}
 include '../includes/layouts/top.php';
 ?>
 
     
 <h2>Manage Content</h2>    
 
+<?php
+//perform db query
+$query = "select * from subjects where visible = 1 order by position ASC";
+$result = mysqli_query($con, $query);
+ConfirmQuery($result);
+
+?>
 <nav>
     <ul class="list-group">
         <?php
         //user returned data
-        foreach ($result as $value) {
+        foreach ($result as $subject) {
             ?>
             <li class="list-group-item"><?php
             
-            echo $value["menu_name"] ." (".
-                    $value["id"]. ")";
+            echo $subject["menu_name"] ." (".
+                    $subject["id"]. ")";
             
-            ?></li>
-            <?php
-        }
-        ?>
+            ?>
+                    <?php 
+                    $query = "select * from pages where visible = 1 and subject_id = {$subject["id"]} order by position ASC";
+                    $pageSet = mysqli_query($con, $query);
+                    ConfirmQuery($pageSet);
+                    
+                    ?>
+                <ul class="list-group">
+                    <?php
+                    foreach ($pageSet as $item) {
+                    ?>
+                    <li class="list-group-item">
+                        <?php 
+                        echo $item["menu_name"];
+                        ?>
+
+                    </li>
+                    <?php }?>
+                </ul>
+            </li>
+<?php
+}
+?>
 
     </ul>
 
@@ -41,4 +60,3 @@ include '../includes/layouts/top.php';
 <?php
 include '../includes/layouts/bottom.php';
 
-mysqli_close($con);
