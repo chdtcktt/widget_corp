@@ -8,41 +8,46 @@ include '../includes/layouts/top.php';
 
 <h2>Manage Content</h2>    
 
-<?php $subjectSet = FindAllSubjects(); ?>
 <nav>
     <ul class="list-group">
         <?php
         //user returned data
+        $subjectSet = FindAllSubjects();
+
         foreach ($subjectSet as $subject) {
             ?>
-            <li class="list-group-item"><?php
-                echo $subject["menu_name"] . " (" .
-                $subject["id"] . ")";
-                ?>
+            <li class="list-group-item">
+                <a href="managecontent.php?subject=<?php echo urldecode($subject["id"]) ?>">
+                    <?php echo $subject["menu_name"] ?>
+                </a>
+
                 <?php
                 $pageSet = FindPagesForSubject($subject["id"]);
                 ?>
                 <ul class="list-group">
-                <?php
-                foreach ($pageSet as $item) {
-                    ?>
-                        <li class="list-group-item">
-                        <?php
-                        echo $item["menu_name"];
+                    <?php
+                    foreach ($pageSet as $item) {
                         ?>
+                        <li class="list-group-item">
+                            <a href="managecontent.php?page=<?php echo urldecode($subject["id"]); ?>">
+                                <?php
+                                echo $item["menu_name"];
+                                ?>
+                            </a>       
+
 
                         </li>
-    <?php } ?>
+                    <?php } ?>
                 </ul>
             </li>
-<?php } ?>
+        <?php } ?>
     </ul>
 
 </nav>
 
 
 <?php
-mysqli_free_result($result);
+mysqli_free_result($subjectSet);
 mysqli_free_result($pageSet);
 include '../includes/layouts/bottom.php';
 

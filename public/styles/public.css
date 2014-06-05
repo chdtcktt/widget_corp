@@ -8,3 +8,11 @@ and open the template in the editor.
     Author     : chadt
 */
 
+body{
+    width: 80%;
+    margin: 0 auto;
+}
+
+nav{
+    margin-right: 80%;
+}
