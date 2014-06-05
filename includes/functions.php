@@ -28,3 +28,22 @@ function FindPagesForSubject($subjectId) {
     
     return $pageSet;
 }
+
+
+function FindSubjectById($id) {
+    //perform db query
+    global $con;
+    
+    $safeSubjectId = mysqli_real_escape_string($con, $id);
+    
+    $query = "select * from subjects where id = {$safeSubjectId} limit 1";
+    $result = mysqli_query($con, $query);
+    ConfirmQuery($result);
+    
+    if($subject = mysqli_fetch_assoc($result)){
+        return $subject;
+    } else {
+        return null;
+    }
+    return $result;
+}
