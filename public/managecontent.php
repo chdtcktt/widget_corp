@@ -6,19 +6,41 @@ include '../includes/layouts/top.php';
 ?>
 
 
+<?php
+if (isset($_GET["subject"])) {
+    $selectedSubjectId = $_GET["subject"];
+    $selectedPageId = null;
+} elseif (isset($_GET["page"])) {
+    $selectedPageId = $_GET["page"];
+    $selectedSubjectId = null;
+} else {
+    $selectedSubjectId = null;
+    $selectedPageId = null;
+}
+?>
+
 <h2>Manage Content</h2>    
 
 <nav>
     <ul class="list-group">
         <?php
-        //user returned data
+//user returned data
         $subjectSet = FindAllSubjects();
 
         foreach ($subjectSet as $subject) {
             ?>
-            <li class="list-group-item">
-                <a href="managecontent.php?subject=<?php echo urldecode($subject["id"]) ?>">
-                    <?php echo $subject["menu_name"] ?>
+
+            <li class="list-group-item 
+            <?php
+            if ($subject["id"] == $selectedSubjectId) {
+                echo "selected";
+            }
+            ?>">             
+
+
+
+                <a href="managecontent.php?subject=<?php echo urlencode($subject["id"]) ?>">
+                <?php echo $subject["menu_name"] ?>
                 </a>
 
                 <?php
@@ -28,19 +50,29 @@ include '../includes/layouts/top.php';
                     <?php
                     foreach ($pageSet as $item) {
                         ?>
-                        <li class="list-group-item">
-                            <a href="managecontent.php?page=<?php echo urldecode($subject["id"]); ?>">
-                                <?php
-                                echo $item["menu_name"];
-                                ?>
+                    
+                    
+                        <li class="list-group-item
+                            <?php
+                            if ($item["id"] == $selectedPageId) {
+                                echo "selected";
+                            }
+                            ?>">
+                            
+                            
+                            
+                            <a href="managecontent.php?page=<?php echo urlencode($item["id"]); ?>">
+        <?php
+        echo $item["menu_name"];
+        ?>
                             </a>       
 
 
                         </li>
-                    <?php } ?>
+    <?php } ?>
                 </ul>
             </li>
-        <?php } ?>
+<?php } ?>
     </ul>
 
 </nav>

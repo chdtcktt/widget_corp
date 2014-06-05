@@ -16,3 +16,7 @@ body{
 nav{
     margin-right: 80%;
 }
+
+.selected{
+    font-weight: bold;
+}
