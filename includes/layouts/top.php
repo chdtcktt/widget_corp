@@ -12,3 +12,4 @@ and open the template in the editor.
         <link href="../public/styles/public.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
+        <h1>Widget Corp</h1>
