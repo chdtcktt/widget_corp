@@ -1,6 +1,6 @@
 <?php 
-$title = "admin";
-include '../includes/top.php';
+$title = "Administration";
+include '../includes/layouts/top.php';
 ?>
 <header>
 <h1>Widget Corp</h1>    
@@ -14,10 +14,5 @@ include '../includes/top.php';
 </ul>
 
 
-
-
-
-
-<footer>Copyright 2014, Widget Corp</footer>
 <?php 
-include '../includes/bottom.php';
+include '../includes/layouts/bottom.php';
