@@ -1,5 +1,6 @@
 <?php 
 $title = "Administration";
+require_once '../includes/functions.php';
 include '../includes/layouts/top.php';
 ?>
 <header>
