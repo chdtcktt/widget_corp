@@ -47,3 +47,20 @@ function FindSubjectById($id) {
     }
     return $result;
 }
+
+function FindPageById($id) {
+    global $con;
+    
+    $safePageId = mysqli_real_escape_string($con, $id);
+    
+    $query = "select * from pages where id = {$safePageId} limit 1";
+    $result = mysqli_query($con, $query);
+    ConfirmQuery($result);
+    
+    if($page = mysqli_fetch_assoc($result)){
+        return $page;
+    } else {
+        return null;
+    }
+    return $result;
+}
