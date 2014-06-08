@@ -8,7 +8,7 @@
 
             <li class="list-group-item 
             <?php
-            if ($subject["id"] == $selectedSubjectId) {
+            if ($currentSubject) {
                 echo "selected";
             }
             ?>">             
@@ -28,7 +28,7 @@
 
                         <li class="list-group-item
                             <?php
-                            if ($item["id"] == $selectedPageId) {
+                            if ($currentPage) {
                                 echo "selected";
                             }
                             ?>">

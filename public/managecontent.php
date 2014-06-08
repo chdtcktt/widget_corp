@@ -1,36 +1,18 @@
 <?php
 $title = 'Manage Content';
-require_once '../includes/dbconnection.php';
-require_once '../includes/functions.php';
 include '../includes/layouts/top.php';
+FindSelectedPage();
+include '../includes/layouts/nav.php'; 
 ?>
-
-
-<?php
-if (isset($_GET["subject"])) {
-    $selectedSubjectId = $_GET["subject"];
-    $selectedPageId = null;
-} elseif (isset($_GET["page"])) {
-    $selectedPageId = $_GET["page"];
-    $selectedSubjectId = null;
-} else {
-    $selectedSubjectId = null;
-    $selectedPageId = null;
-}
-?>
-
-<?php include '../includes/layouts/nav.php'; ?>
 <article>
 
-    <?php if ($selectedSubjectId) { ?>
+    <?php if ($currentSubject) { ?>
         <h2>Manage Content</h2>
-        <?php $currentSubject = FindSubjectById($selectedSubjectId); ?>
         Menu Name: <?php echo $currentSubject["menu_name"]; ?>
     <?php } ?>
 
-    <?php if ($selectedPageId) { ?>
+    <?php if ($currentPage) { ?>
         <h2>Manage Page</h2>
-        <?php $currentPage = FindPageById($selectedPageId); ?>
         Page Name: <?php echo $currentPage["menu_name"]; ?>
     <?php } ?>
 
