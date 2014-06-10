@@ -1,16 +1,21 @@
 <?php
 $title = 'Manage Content';
+require_once '../includes/session.php';
 include '../includes/layouts/top.php';
 FindSelectedPage();
 include '../includes/layouts/nav.php';
 ?>
 
 <article>
-
+        <?php echo Message();?>
     <?php if ($currentSubject) { ?>
-        <h2>Manage Content</h2>
-        Menu Name: <?php echo $currentSubject["menu_name"]; ?>
+        <h2>Manage Subject</h2>
+        Menu Name: <?php echo $currentSubject["menu_name"]; ?>    
+        <br/>
+        <a href="editsubject.php?subject=<?php echo $currentSubject["id"]; ?>">Edit Subject</a>
+
     <?php } ?>
+        
 
     <?php if ($currentPage) { ?>
         <h2>Manage Page</h2>
