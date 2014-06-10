@@ -8,7 +8,7 @@
 
             <li class="list-group-item 
             <?php
-            if ($currentSubject) {
+            if ($currentSubject == $subject) {
                 echo "selected";
             }
             ?>">             
@@ -22,22 +22,22 @@
                 ?>
                 <ul class="list-group">
                     <?php
-                    foreach ($pageSet as $item) {
+                    foreach ($pageSet as $page) {
                         ?>
 
 
                         <li class="list-group-item
                             <?php
-                            if ($currentPage) {
+                            if ($currentPage == $page) {
                                 echo "selected";
                             }
                             ?>">
 
 
 
-                            <a href="managecontent.php?page=<?php echo urlencode($item["id"]); ?>">
+                            <a href="managecontent.php?page=<?php echo urlencode($page["id"]); ?>">
                                 <?php
-                                echo $item["menu_name"];
+                                echo $page["menu_name"];
                                 ?>
                             </a>       
 

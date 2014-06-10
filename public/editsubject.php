@@ -11,12 +11,47 @@ if(!$currentSubject){
 
 ?>
 
+
+<?php 
+//process post
+
+    if(isset($_POST['submit'])){
+        
+        $id = $currentSubject["id"];
+        $menuName = MysqlPrep($_POST["menuName"]);
+        $position = (int) $_POST["position"];
+        $visible = (int) $_POST["visible"];
+        
+        
+        $query = "update subjects set "
+                . "menu_name = '{$menuName}', "
+                . "position = {$position}, "
+                . "visible = {$visible} "
+                . "where id = {$id} "
+                . "limit 1";
+                
+                
+        $result = mysqli_query($con, $query);
+        
+        if ($result && mysqli_affected_rows($con) == 1) {
+            //success
+            $_SESSION["message"] = "Subject edited.";
+            RedirectTo("managecontent.php");
+        } else {
+            //fail
+            $_SESSION["message"] = "Subject edit falied.";
+        }
+        
+    } 
+?>
+
+
 <article>
 
     <?php echo Message();?>
     <h2>Edit Subject: <?php echo $currentSubject["menu_name"];?></h2>
-
-    <form class="gen-form" action="createsubject.php" method="POST">
+        
+    <form class="gen-form" action="editsubject.php?subject=<?php echo $currentSubject["id"]; ?>" method="POST">
         <div class="form-group">
             <label>Menu Name</label>
             <input type="text" name="menuName" value="<?php echo $currentSubject["menu_name"];?>" class="form-control" />
