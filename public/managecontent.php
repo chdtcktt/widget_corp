@@ -2,8 +2,9 @@
 $title = 'Manage Content';
 include '../includes/layouts/top.php';
 FindSelectedPage();
-include '../includes/layouts/nav.php'; 
+include '../includes/layouts/nav.php';
 ?>
+
 <article>
 
     <?php if ($currentSubject) { ?>

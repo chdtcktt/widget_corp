@@ -48,5 +48,12 @@
             </li>
         <?php } ?>
     </ul>
+    <?php
+        if($title != "New Subject"){
+            echo "<a href=\"newsubject.php\">+ Add a Subject</a>";
+        }
+    ?>
+   
+    
 
 </nav>

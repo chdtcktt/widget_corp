@@ -6,6 +6,13 @@ function ConfirmQuery($result) {
     }
 }
 
+function MysqlPrep($string) {
+    global $con;
+    
+    $escaped = mysqli_real_escape_string($con, $string);
+    return $escaped;
+}
+
 function FindAllSubjects() {
 
     //perform db query
@@ -63,6 +70,9 @@ function FindPageById($id) {
 }
 
 function FindSelectedPage() {
+    global $currentPage;
+    global $currentSubject;
+    
     if (isset($_GET["subject"])) {
         $currentSubject = FindSubjectById($_GET["subject"]);
         $currentPage = null;
@@ -73,4 +83,9 @@ function FindSelectedPage() {
         $currentPage = null;
         $currentSubject = null;
     }
+}
+
+function RedirectTo($loc) {
+    header("Location: " . $loc);
+    exit;
 }

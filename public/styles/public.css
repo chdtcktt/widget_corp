@@ -27,3 +27,7 @@ article{
 .selected{
     font-weight: bold;
 }
+
+.gen-form{
+    width: 30%;
+}
