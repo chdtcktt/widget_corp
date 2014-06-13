@@ -88,6 +88,7 @@ if(!$currentSubject){
 
         <input type="submit" name="submit" class="btn btn-group" value="Edit Subject"/>
         <a href="managecontent.php">Cancel</a>
+        <a href="delete_subject.php?subject=<?php echo $currentSubject["id"]; ?>">Delete</a>
 
 
 

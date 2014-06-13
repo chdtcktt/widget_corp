@@ -13,6 +13,7 @@ function Message() {
         $_SESSION["message"] = null;
             
         return $output;
+        
 
     }
 
